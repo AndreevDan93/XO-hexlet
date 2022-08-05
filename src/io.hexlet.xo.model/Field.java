@@ -1,8 +1,8 @@
 package io.hexlet.xo.model;
 
-import io.hexlet.xo.model.Exeptions.InvalidPointException;
-import io.hexlet.xo.model.Exeptions.PointAlreadyOccupiedException;
-import io.hexlet.xo.model.Exeptions.XOExceptions;
+import io.hexlet.xo.model.exeptions.InvalidPointException;
+import io.hexlet.xo.model.exeptions.PointAlreadyOccupiedException;
+import io.hexlet.xo.model.exeptions.XOExceptions;
 
 import java.awt.*;
 

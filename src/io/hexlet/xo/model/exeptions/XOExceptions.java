@@ -1,4 +1,4 @@
-package io.hexlet.xo.model.Exeptions;
+package io.hexlet.xo.model.exeptions;
 
 public abstract class XOExceptions extends Exception{
 }
