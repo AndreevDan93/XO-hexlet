@@ -1,5 +1,7 @@
 package io.hexlet.xo.model;
 
+import io.hexlet.xo.model.Exeptions.InvalidPointException;
+import io.hexlet.xo.model.Exeptions.XOExceptions;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -17,21 +19,31 @@ class FieldTest {
 
 
     @Test
-    void setFigure() {
+    void setFigure() throws XOExceptions {
         final Field field = new Field();
         Figure figure = Figure.O;
         Point point1 = new Point(0,0);
-        Point point2 = new Point(-1, 0);
-        Point point3 = new Point(0,-1);
-        Point point4 = new Point(4,4);
         field.setFigure(point1,figure);
-        field.setFigure(point2,figure);
-        field.setFigure(point2,figure);
-        field.setFigure(point2,figure);
-
         assertEquals(Figure.O,field.getFigure(point1));
-        assertEquals(Figure.O,field.getFigure(point2));
-        assertEquals(Figure.O,field.getFigure(point3));
-        assertEquals(Figure.O,field.getFigure(point4));
+
+    }
+
+    @Test
+    void getFigureWhenFigureIsNotSet() throws XOExceptions {
+        final Field field = new Field();
+        Point point1 = new Point(0,0);
+
+
+
+    }
+    @Test
+    void getFigureWhenXIsNotCorrect() throws XOExceptions {
+        final Field field = new Field();
+        Point point1 = new Point(-1,0);
+        try {
+            field.getFigure(point1);
+            fail();
+        } catch (final InvalidPointException e) {}
+
     }
 }
