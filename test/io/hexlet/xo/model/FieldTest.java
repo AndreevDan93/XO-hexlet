@@ -30,13 +30,13 @@ class FieldTest {
     }
 
     @Test
-    void getFigureWhenXIsNotCorrect() throws XOExceptions {
+    void getFigureWhenXIsNotCorrect() throws InvalidPointException {
         final Field field = new Field();
         Point point1 = new Point(-1,0);
         try {
             field.getFigure(point1);
             fail();
-        } catch (final InvalidPointException e) {}
+        } catch (final InvalidPointException ignored) {}
 
     }
 
@@ -48,7 +48,7 @@ class FieldTest {
         try {
             field.setFigure(point1,Figure.X);
             fail();
-        } catch (final PointAlreadyOccupiedException e) {}
+        } catch (final PointAlreadyOccupiedException ignored) {}
 
     }
 

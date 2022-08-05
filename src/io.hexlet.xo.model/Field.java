@@ -17,14 +17,14 @@ public class Field {
     }
 
     public Figure getFigure(final Point point) throws InvalidPointException {
-        if (!checkCoordinateForCorrectness(point)) {
+        if (checkCoordinateForCorrectness(point)) {
             throw new InvalidPointException();
         }
         return field[point.x][point.y];
     }
 
     public void setFigure(final Point point, final Figure figure) throws XOExceptions {
-        if (!checkCoordinateForCorrectness(point)) {
+        if (checkCoordinateForCorrectness(point)) {
             throw new InvalidPointException();
         }
         if (!(field[point.x][point.y] == null)) {
@@ -34,7 +34,7 @@ public class Field {
     }
 
     private boolean checkCoordinateForCorrectness(Point point) {
-        return point.x >= MIN_COORDINATE && point.x <= MAX_COORDINATE
-                && point.y >= MIN_COORDINATE && point.y <= MAX_COORDINATE;
+        return point.x < MIN_COORDINATE || point.x > MAX_COORDINATE
+                || point.y < MIN_COORDINATE || point.y > MAX_COORDINATE;
     }
 }
