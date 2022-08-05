@@ -1,6 +1,7 @@
 package io.hexlet.xo.model;
 
 import io.hexlet.xo.model.Exeptions.InvalidPointException;
+import io.hexlet.xo.model.Exeptions.PointAlreadyOccupiedException;
 import io.hexlet.xo.model.Exeptions.XOExceptions;
 import org.junit.jupiter.api.Test;
 
@@ -29,14 +30,6 @@ class FieldTest {
     }
 
     @Test
-    void getFigureWhenFigureIsNotSet() throws XOExceptions {
-        final Field field = new Field();
-        Point point1 = new Point(0,0);
-
-
-
-    }
-    @Test
     void getFigureWhenXIsNotCorrect() throws XOExceptions {
         final Field field = new Field();
         Point point1 = new Point(-1,0);
@@ -46,4 +39,17 @@ class FieldTest {
         } catch (final InvalidPointException e) {}
 
     }
+
+    @Test
+    void setFigureWhenPointAlreadyOccupied() throws XOExceptions {
+        final Field field = new Field();
+        Point point1 = new Point(0,0);
+        field.setFigure(point1,Figure.O);
+        try {
+            field.setFigure(point1,Figure.X);
+            fail();
+        } catch (final PointAlreadyOccupiedException e) {}
+
+    }
+
 }
