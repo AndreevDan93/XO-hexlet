@@ -1,4 +1,4 @@
-package io.hexlet.xo.model.exeptions;
+package io.hexlet.xo.model.exceptions;
 
 public class InvalidPointException extends XOExceptions{
 }

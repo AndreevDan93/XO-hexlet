@@ -1,40 +1,46 @@
 package io.hexlet.xo.model;
 
-import io.hexlet.xo.model.exeptions.InvalidPointException;
-import io.hexlet.xo.model.exeptions.PointAlreadyOccupiedException;
-import io.hexlet.xo.model.exeptions.XOExceptions;
+import io.hexlet.xo.model.exceptions.InvalidPointException;
 
 import java.awt.*;
 
 public class Field {
-    private static final int FIELD_SIZE = 3;
-    private static final int MIN_COORDINATE = 0;
-    private static final int MAX_COORDINATE = 3;
-    private final Figure[][] field = new Figure[FIELD_SIZE][FIELD_SIZE];
 
-    public int getFieldSize() {
-        return FIELD_SIZE;
+    private static final int MIN_COORDINATE = 0;
+
+    private final Figure[][] field;
+
+    private final int filedSize;
+
+    public Field(final int filedSize) {
+        this.filedSize = filedSize;
+        field = new Figure[filedSize][filedSize];
+    }
+
+    public int getSize() {
+        return filedSize;
     }
 
     public Figure getFigure(final Point point) throws InvalidPointException {
-        if (checkCoordinateForCorrectness(point)) {
+        if (!checkPoint(point)) {
             throw new InvalidPointException();
         }
         return field[point.x][point.y];
     }
 
-    public void setFigure(final Point point, final Figure figure) throws XOExceptions {
-        if (checkCoordinateForCorrectness(point)) {
+    public void setFigure(final Point point, final Figure figure) throws InvalidPointException {
+        if (!checkPoint(point)) {
             throw new InvalidPointException();
-        }
-        if (!(field[point.x][point.y] == null)) {
-            throw new PointAlreadyOccupiedException();
         }
         field[point.x][point.y] = figure;
     }
 
-    private boolean checkCoordinateForCorrectness(Point point) {
-        return point.x < MIN_COORDINATE || point.x > MAX_COORDINATE
-                || point.y < MIN_COORDINATE || point.y > MAX_COORDINATE;
+    private boolean checkPoint(final Point point) {
+        return checkCoordinate(point.x, field.length) && checkCoordinate(point.y, field[point.x].length);
     }
+
+    private boolean checkCoordinate(final int coordinate, final int maxCoordinate) {
+        return coordinate >= MIN_COORDINATE && coordinate < maxCoordinate;
+    }
+
 }
